@@ -1,0 +1,124 @@
+Steps To Run Genie in Solidity for Ethereum  - Machine Learning for Blockchain
+
+Resource Link: the oraclize ethereum API is here:  https://github.com/oraclize/ethereum-api/
+
+Step 1>
+To Test GNY with Free 100 Ether Gas first set free Solidity Ethereum Test Environment in Remix click URL : https://remix.ethereum.org/
+Click on Testing Tab 
+Click on Generate Test File Button 
+Click on Run Tests Button
+The Solidity Ethereum Test File ballot_test.sol is created 
+
+Step 2>
+Click on Compile Tab
+Click on drop down menu entitled “Select New Compiler Version” 
+Select the 4th version from the top of the menu
+The program will automatically start to compile
+
+Step 3>
+Click on Run Tab
+Click on Deploy Button 
+You now have 100 ether free in your account 
+
+Step 4>
+GNY is a Deep Learning Neural Net so the more data you give it the more accurate its predictions. If you have historical data :
+Format the data in columns of consumer id date product name .
+
+Open to new browser tab, and enter this URL to Load  data  : http://54.244.75.108/uploadFileHistoricalData.php
+
+Alternatively you can use our SFTP to upload your data
+To load data securely use:  Secure data loading: 
+sftp giouser@54.244.75.108
+Password: giopass222
+
+Step 5 (if you are using historical data)
+
+Return to the remix environment to the test tab
+Click on create button (a plus sign in a circle) 
+Name the new file GNY Test
+
+Cut and paste this code : 
+
+pragma solidity >=0.4.22;
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
+
+contract MyGenieContract is usingOraclize {
+	string public recommendation;
+    
+	event NewOraclizeQuery(string mycid);
+	event NewGenieMachineLearningResponse(string recommendation);
+    
+    
+	// called by GENIE USER FROM ETHEREUM BLOCKCHAIN
+	function update() public payable {
+   	 
+	emit NewOraclizeQuery("Start Genie waiting for response ... ");
+        	// data source URL API call
+	oraclize_query(60, "URL", "http://54.244.75.108/getRecommendedProduct.php?key=jtwD3RMlgA&consumer_id=13", 500000);
+	}
+    
+	function afterAll() public {
+        	oraclize_query(60, "URL", "http://54.244.75.108/sendActualProduct.php?key=jtwD3RMlgA&cid=consumer_id=13&product_name=cherry", 500000);
+	}
+    
+
+}
+
+
+Step 6
+
+Click on Compile Tab:
+
+
+---------------------
+
+***This GNY account with API key=jtwD3RMlgA has been automically loaded with historical data so will return a trained neural net result:  
+http://54.244.75.108/getRecommendedProduct.php?key=jtwD3RMlgA&consumer_id=11 
+
+
+To use GNY without historical data you use the same API calls, for example this GNY account with API key=xgr=67d&gP has NOT been loaded with historical data and will bootstrap itself from the real time data sent in the API call 
+http://54.244.75.108/sendActualProduct.php?key=xgr=67d&gP&cid=consumer_id=13&product_name=cherry
+
+Step 5 (If you are not using historical data)
+
+Return to the remix environment to the test tab
+Click on create button (a plus sign in a circle) 
+Name the new file GNY Test
+Cut and paste this code : 
+
+pragma solidity >=0.4.22;
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
+
+contract MyGenieContract is usingOraclize {
+	string public recommendation;
+    
+	event NewOraclizeQuery(string mycid);
+	event NewGenieMachineLearningResponse(string recommendation);
+    
+    
+	// called by GENIE USER FROM ETHEREUM BLOCKCHAIN
+	function update() public payable {
+   	 
+	emit NewOraclizeQuery("Start Genie waiting for response ... ");
+        	// data source URL API call
+	oraclize_query(60, "URL", "http://54.244.75.108/getRecommendedProduct.php?key=xgr=67d&gP&consumer_id=13", 500000);
+	}
+    
+	function afterAll () public {
+        	oraclize_query(60, "URL", "http://54.244.75.108/sendActualProduct.php?key=xgr=67d&gP&cid=consumer_id=13&product_name=cherry", 500000);
+	}
+    
+
+}
+
+This test process will produce recommendations which be delivered directly onto your blockchain.  You can verify the results by looking into the solidity coding on your chain.
+
+After testing GNY API you may be ready to set this up for your business.  GNY API is a monthly subscription model, and you can refer to our blog for details, and instructions on how to register and get your custom GNY API ID 
+
+
+
+
+Please email us at info@gny.io with any questions!  We are excited for you to test our next step in machine learning, and want to hear any feedback or technical difficulties.
+
+
+Genie will use this API call to make a new valid account: http://54.244.75.108/getGenieAPIKey.php?email=cos@gny.io  
